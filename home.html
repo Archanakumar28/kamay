@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kamay The Premium</title>
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#fff;
+      color:#222;
+    }
+
+    /* NAVBAR */
+
+    header{
+      position:fixed;
+      width:100%;
+      top:0;
+      left:0;
+      z-index:1000;
+    }
+
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+      transition:0.4s;
+    }
+
+    .navbar.scrolled{
+      background:#111;
+    }
+
+    .logo{
+      color:#fff;
+      font-size:28px;
+      font-weight:bold;
+      letter-spacing:2px;
+    }
+
+    .nav-links{
+      display:flex;
+      list-style:none;
+    }
+
+    .nav-links li{
+      margin-left:30px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#fff;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:gold;
+    }
+
+    .menu-btn{
+      display:none;
+      color:#fff;
+      font-size:25px;
+      cursor:pointer;
+    }
+
+    /* HERO SECTION */
+
+    .hero{
+      height:100vh;
+      background:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb')
+      center/cover no-repeat;
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+
+    .overlay{
+      position:absolute;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.5);
+    }
+
+    .hero-content{
+      position:relative;
+      color:#fff;
+      z-index:2;
+      padding:20px;
+    }
+
+    .hero-content h1{
+      font-size:70px;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      margin-bottom:30px;
+      line-height:1.6;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 35px;
+      background:gold;
+      color:#111;
+      text-decoration:none;
+      border-radius:5px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#fff;
+      transform:translateY(-3px);
+    }
+
+    /* ABOUT SECTION */
+
+    .about{
+      display:flex;
+      align-items:center;
+      gap:50px;
+      padding:100px 8%;
+    }
+
+    .about-image img{
+      width:500px;
+      border-radius:10px;
+    }
+
+    .about-text h2{
+      font-size:40px;
+      margin-bottom:20px;
+    }
+
+    .about-text p{
+      margin-bottom:20px;
+      line-height:1.8;
+    }
+
+    /* SECTION TITLE */
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-size:40px;
+    }
+
+    /* ROOMS */
+
+    .rooms{
+      padding:100px 8%;
+      background:#f8f8f8;
+    }
+
+    .room-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .room-card{
+      background:#fff;
+      border-radius:10px;
+      overflow:hidden;
+      transition:0.3s;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .room-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .room-card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+    }
+
+    .room-content{
+      padding:20px;
+    }
+
+    .room-content h3{
+      margin-bottom:10px;
+    }
+
+    .room-content p{
+      margin-bottom:15px;
+    }
+
+    .room-content span{
+      color:goldenrod;
+      font-weight:bold;
+    }
+
+    /* SERVICES */
+
+    .services{
+      padding:100px 8%;
+    }
+
+    .service-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:30px;
+    }
+
+    .service-box{
+      text-align:center;
+      padding:40px;
+      background:#111;
+      color:#fff;
+      border-radius:10px;
+      transition:0.3s;
+    }
+
+    .service-box:hover{
+      background:gold;
+      color:#111;
+    }
+
+    .service-box i{
+      font-size:40px;
+      margin-bottom:20px;
+    }
+
+    /* GALLERY */
+
+    .gallery{
+      padding:100px 8%;
+      background:#f8f8f8;
+    }
+
+    .gallery-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:20px;
+    }
+
+    .gallery-container img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      border-radius:10px;
+      transition:0.3s;
+    }
+
+    .gallery-container img:hover{
+      transform:scale(1.05);
+    }
+
+    /* BOOKING */
+
+    .booking{
+      padding:100px 8%;
+    }
+
+    .booking-form{
+      max-width:700px;
+      margin:auto;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .booking-form input,
+    .booking-form select{
+      padding:15px;
+      border:1px solid #ccc;
+      border-radius:5px;
+      font-size:16px;
+    }
+
+    .booking-form button{
+      padding:15px;
+      border:none;
+      background:gold;
+      font-size:18px;
+      cursor:pointer;
+      border-radius:5px;
+      transition:0.3s;
+    }
+
+    .booking-form button:hover{
+      background:#111;
+      color:#fff;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#111;
+      color:#fff;
+      padding:50px 8%;
+      text-align:center;
+    }
+
+    .socials{
+      margin:20px 0;
+    }
+
+    .socials i{
+      font-size:22px;
+      margin:0 10px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .socials i:hover{
+      color:gold;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .about{
+        flex-direction:column;
+      }
+
+      .about-image img{
+        width:100%;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:80px;
+        right:-100%;
+        width:250px;
+        height:100vh;
+        background:#111;
+        flex-direction:column;
+        padding-top:40px;
+        transition:0.4s;
+      }
+
+      .nav-links.active{
+        right:0;
+      }
+
+      .nav-links li{
+        margin:20px 0;
+        text-align:center;
+      }
+
+      .menu-btn{
+        display:block;
+      }
+
+      .hero-content h1{
+        font-size:45px;
+      }
+
+      .hero-content p{
+        font-size:18px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header>
+
+    <nav class="navbar">
+
+      <div class="logo">KAMAY</div>
+
+      <ul class="nav-links">
+
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Rooms</a></li>
+        <li><a href="#">Dining</a></li>
+        <li><a href="#">Banquets</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Booking</a></li>
+        <li><a href="#">Contact</a></li>
+
+      </ul>
+
+      <div class="menu-btn">
+
+        <i class="fa-solid fa-bars"></i>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <!-- HERO SECTION -->
+
+  <section class="hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+      <h1>Welcome to Kamay The Premium</h1>
+
+      <p>
+        Experience comfort, elegance, and warm hospitality in the heart of Gurugram.
+      </p>
+
+      <a href="#" class="btn">Book Your Stay</a>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT SECTION -->
+
+  <section class="about">
+
+    <div class="about-image">
+
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="Kamay The Premium">
+
+    </div>
+
+    <div class="about-text">
+
+      <h2>About Kamay The Premium</h2>
+
+      <p>
+        Located in Sector 51, Gurugram, Kamay The Premium offers a perfect blend
+        of comfort, elegance, and affordability for business and leisure travelers.
+      </p>
+
+      <p>
+        With 30 well-appointed rooms, premium amenities, multi-cuisine dining,
+        banquet facilities, and personalized hospitality, we ensure every guest
+        enjoys a relaxing and memorable stay experience.
+      </p>
+
+      <a href="#" class="btn">Explore More</a>
+
+    </div>
+
+  </section>
+
+  <!-- ROOMS SECTION -->
+
+  <section class="rooms">
+
+    <div class="section-title">
+
+      <h2>Rooms & Accommodation</h2>
+
+    </div>
+
+    <div class="room-container">
+
+      <div class="room-card">
+
+        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt="Executive Room">
+
+        <div class="room-content">
+
+          <h3>Executive Room</h3>
+
+          <p>
+            Comfortable 300 sq. ft. accommodation with premium bedding,
+            Wi-Fi, work desk, and centralized air conditioning.
+          </p>
+
+          <span>Elegant Comfort & Premium Amenities</span>
+
+        </div>
+
+      </div>
+
+      <div class="room-card">
+
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" alt="Premium Executive Room">
+
+        <div class="room-content">
+
+          <h3>Premium Executive Room</h3>
+
+          <p>
+            Spacious premium room with elegant interiors,
+            additional seating area, tea/coffee maker,
+            and modern comforts.
+          </p>
+
+          <span>Spacious Interiors & Modern Luxury</span>
+
+        </div>
+
+      </div>
+
+      <div class="room-card">
+
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750" alt="Luxury Room">
+
+        <div class="room-content">
+
+          <h3>Luxury Room</h3>
+
+          <p>
+            Elegant luxury accommodation featuring superior comfort,
+            dedicated sitting space, and premium bathroom amenities.
+          </p>
+
+          <span>Exclusive Luxury Stay Experience</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SERVICES SECTION -->
+
+  <section class="services">
+
+    <div class="section-title">
+
+      <h2>Facilities & Services</h2>
+
+    </div>
+
+    <div class="service-container">
+
+      <div class="service-box">
+
+        <i class="fa-solid fa-wifi"></i>
+
+        <h3>High-Speed Wi-Fi</h3>
+
+      </div>
+
+      <div class="service-box">
+
+        <i class="fa-solid fa-utensils"></i>
+
+        <h3>Multi-Cuisine Restaurant</h3>
+
+      </div>
+
+      <div class="service-box">
+
+        <i class="fa-solid fa-bell-concierge"></i>
+
+        <h3>24-Hour Room Service</h3>
+
+      </div>
+
+      <div class="service-box">
+
+        <i class="fa-solid fa-people-group"></i>
+
+        <h3>Banquet Hall</h3>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GALLERY SECTION -->
+
+  <section class="gallery">
+
+    <div class="section-title">
+
+      <h2>Gallery</h2>
+
+    </div>
+
+    <div class="gallery-container">
+
+      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb" alt="Hotel Exterior">
+
+      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" alt="Premium Room">
+
+      <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt="Executive Room">
+
+      <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c" alt="Dining">
+
+      <img src="https://images.unsplash.com/photo-1455587734955-081b22074882" alt="Restaurant">
+
+      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750" alt="Luxury Suite">
+
+    </div>
+
+  </section>
+
+  <!-- BOOKING SECTION -->
+
+  <section class="booking">
+
+    <div class="section-title">
+
+      <h2>Reserve Your Stay</h2>
+
+    </div>
+
+    <form class="booking-form">
+
+      <input type="text" placeholder="Full Name" required>
+
+      <input type="email" placeholder="Email Address" required>
+
+      <input type="date" required>
+
+      <input type="date" required>
+
+      <select>
+
+        <option>Executive Room</option>
+
+        <option>Premium Executive Room</option>
+
+        <option>Luxury Room</option>
+
+      </select>
+
+      <button type="submit">Book Now</button>
+
+    </form>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <h2>KAMAY THE PREMIUM</h2>
+
+    <p>
+      Plot No. 220-P, Sector 51, Gurugram, Haryana – 122003, India
+    </p>
+
+    <p>
+      Mobile: +91 92516 23298 | 0124-4781249
+    </p>
+
+    <p>
+      Email: adithiya@kamayhotels.com
+    </p>
+
+    <div class="socials">
+
+      <i class="fa-brands fa-facebook"></i>
+
+      <i class="fa-brands fa-instagram"></i>
+
+      <i class="fa-brands fa-twitter"></i>
+
+    </div>
+
+    <p>
+      © 2026 Kamay The Premium. All Rights Reserved.
+    </p>
+
+  </footer>
+
+  <script>
+
+    // NAVBAR BACKGROUND ON SCROLL
+
+    window.addEventListener("scroll", function(){
+
+      const navbar = document.querySelector(".navbar");
+
+      navbar.classList.toggle("scrolled", window.scrollY > 50);
+
+    });
+
+    // MOBILE MENU
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuBtn.addEventListener("click", () => {
+
+      navLinks.classList.toggle("active");
+
+    });
+
+  </script>
+
+</body>
+</html>
